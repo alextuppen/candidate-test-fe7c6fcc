@@ -4,8 +4,17 @@ import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { routes } from "./shared/routes";
 import { Toaster } from "react-hot-toast";
 import { useEffect } from "react";
+import { subscribeToStoreActions, asSynced } from "./shared/storeBridge";
+import { dashboardStore } from "./dashboard/store";
+import { updateWorkStatus } from "./dashboard/store/userSlice";
+import type { WorkStatus } from "./shared/types";
 
-// Create a root-level div to provide proper styling context
+subscribeToStoreActions("dashboard", ({ actionType, payload }) => {
+  if (actionType === "navUser/updateWorkStatus") {
+    dashboardStore.dispatch(asSynced(updateWorkStatus(payload as WorkStatus)));
+  }
+});
+
 const dashboardRoot = document.getElementById("dashboard-root");
 
 // Component to listen for navigation events from other micro-frontends
