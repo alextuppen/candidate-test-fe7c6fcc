@@ -40,7 +40,7 @@ export const UserAvatar = () => {
       </div>
 
       {dropdownOpen && (
-        <div className="absolute top-full mt-2 right-0 bg-white shadow-lg rounded-md p-4 w-64 z-10 border border-gray-200">
+        <div className="absolute bottom-full mb-2 left-0 bg-white shadow-lg rounded-md p-4 w-64 z-10 border border-gray-200">
           <h4 className="text-sm font-medium text-gray-700 mb-2">
             Update your work status:
           </h4>
